@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">CPEN321Tutorial</string>
+    <string name="location_button_caption">Get Location Permissions</string>
+    <string name="maps_button_caption">My favorite city</string>
+    <string name="title_activity_maps">MapsActivity</string>
+    <string name="sign_out_button_caption">Sign out</string>
+    <string name="fav_city_but_cap">My favorite City</string>
+    <string name="phone_det_but_cap">Phone Details</string>
+    <string name="location_label">Current Location</string>
+    <string name="model_label">Phone Model:</string>
+    <string name="manu_label">Phone Manufacturer:</string>
+</resources>
