@@ -6,6 +6,7 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -45,7 +46,7 @@ public class PhoneDetailsActivity extends AppCompatActivity implements LocationL
         manufText.setText("Manufacturer: " + Build.MANUFACTURER);
 
         //check location permissions
-        checkLocationPermissions();
+        //checkLocationPermissions();
         locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             // TODO: Consider calling
@@ -56,15 +57,38 @@ public class PhoneDetailsActivity extends AppCompatActivity implements LocationL
             // to handle the case where the user grants the permission. See the documentation
             // for ActivityCompat#requestPermissions for more details.
 
+            ActivityCompat.requestPermissions(this, new String[] {android.Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION}, 1);
 
             return;
         }
-        locationManager.requestLocationUpdates(locationManager.GPS_PROVIDER, 1000, 0, this);
+        locationManager.requestLocationUpdates(locationManager.GPS_PROVIDER, 500, 0, this);
+
     }
+
+    @SuppressLint("MissingPermission")
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int [] grantResults)
+    {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+
+        for(int i : grantResults)
+        {
+            if(i != PackageManager.PERMISSION_GRANTED)
+            {
+                currentLocationText.setText("Location: You did not allow permissions. Lame");
+                return;
+            }
+        }
+
+        //suppressed, since we know that permissions were granted.
+        onLocationChanged(locationManager.getLastKnownLocation(locationManager.GPS_PROVIDER));
+
+    }
+
 
     @Override
     public void onLocationChanged(@NonNull Location location) {
         currentLocationText.setText("City: " + locateCity(location.getLatitude(), location.getLongitude()));
+
     }
 
     @Override
