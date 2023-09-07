@@ -3,13 +3,17 @@ package com.beaker.cpen321tutorial;
 import androidx.appcompat.app.AppCompatActivity;
 
 
+import android.net.InetAddresses;
+import android.net.wifi.WifiManager;
 import android.os.Bundle;
 import android.os.Handler;
+import android.text.format.Formatter;
 import android.widget.TextView;
 
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 
 
+import java.net.InetAddress;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -82,6 +86,11 @@ public class SeverDetails extends AppCompatActivity {
         clientTime = findViewById(R.id.client_time_entry);
         devName = findViewById(R.id.dev_name_entry);
         username = findViewById(R.id.user_name_entry);
+
+
+        //client ip
+        WifiManager wifiManager = (WifiManager) getSystemService(WIFI_SERVICE);
+        clientIP.setText(Formatter.formatIpAddress(wifiManager.getConnectionInfo().getIpAddress()));
 
 
         //set timer handler
