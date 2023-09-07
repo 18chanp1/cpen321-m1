@@ -9,4 +9,12 @@
     <string name="location_label">Current Location</string>
     <string name="model_label">Phone Model:</string>
     <string name="manu_label">Phone Manufacturer:</string>
+    <string name="server_det_title">Server Details</string>
+    <string name="server_ip_addr">Public IP:</string>
+    <string name="client_ip_addr">Client IP:</string>
+    <string name="server_time">Server time:</string>
+    <string name="client_time">Client time:</string>
+    <string name="dev_name">Developer name:</string>
+    <string name="user_name">User name:</string>
+    <string name="unavailable">Unavailable</string>
 </resources>

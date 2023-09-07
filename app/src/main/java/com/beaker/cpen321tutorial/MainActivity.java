@@ -148,13 +148,14 @@ public class MainActivity extends AppCompatActivity {
         // Check for existing Google Sign In account, if the user is already signed in
         // the GoogleSignInAccount will be non-null.
         GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
-        updateUI(account);
+        //updateUI(account);
     }
 
     private void updateUI(GoogleSignInAccount account) {
         if(account == null)
         {
             Log.d(TAG, "There is no user signed in");
+            // TODO add dialog
         }
         else
         {
@@ -167,6 +168,9 @@ public class MainActivity extends AppCompatActivity {
             //send token to backend
             account.getIdToken();
             //move to another activity
+            Intent serverDetailsIntent = new Intent(MainActivity.this, SeverDetails.class);
+            serverDetailsIntent.putExtra("account", account);
+            startActivity(serverDetailsIntent);
 
         }
 
