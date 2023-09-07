@@ -3,7 +3,6 @@ package com.beaker.cpen321tutorial;
 import androidx.appcompat.app.AppCompatActivity;
 
 
-import android.net.InetAddresses;
 import android.net.wifi.WifiManager;
 import android.os.Bundle;
 import android.os.Handler;
@@ -13,10 +12,17 @@ import android.widget.TextView;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 
 
+import java.io.IOException;
 import java.net.InetAddress;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 
 public class SeverDetails extends AppCompatActivity {
     private String serveraddr = "http://20.163.101.103";
@@ -25,6 +31,11 @@ public class SeverDetails extends AppCompatActivity {
     private TextView serverIP;
     private TextView serverTime;
     private TextView clientTime;
+
+    public TextView getDevName() {
+        return devName;
+    }
+
     private TextView devName;
     private TextView username;
     final static String TAG = "ServerDetails";
@@ -40,40 +51,43 @@ public class SeverDetails extends AppCompatActivity {
             clientTime.setText(sdf.format(new Date()));
             timeHandler.postDelayed(this, 1000);
 
-            //get server time
-//            HttpURLConnection urlConnection = null;
-//            try {
-//                Log.d(TAG, "reading1");
-//                URL url = new URL(serveraddr +"/time");
-//                Log.d(TAG, "reading2");
-//                urlConnection = (HttpURLConnection) url.openConnection();
-//                Log.d(TAG, "reading3");
-//                BufferedReader in = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
-//
-//                String inputLine;
-//                Log.d(TAG, "reading4");
-//
-//                while((inputLine = in.readLine())!= null)
-//                {
-//                    Log.d(TAG, "reading");
-//                }
-//                in.close();
-//
-//            } catch (MalformedURLException e1)
-//            {
-//                Log.d(TAG, "Malformed URL");
-//            } catch (IOException e2)
-//            {
-//                Log.d(TAG, e2.toString());
-//            } finally
-//            {
-//                urlConnection.disconnect();
-//            }
+            OkHttpClient client = new OkHttpClient();
+            String url = serveraddr + "/time";
+
+            Request req = new Request.Builder()
+                    .url(url)
+                    .build();
+
+            client.newCall(req).enqueue(new Callback() {
+                @Override
+                public void onFailure(Call call, IOException e) {
+                    e.printStackTrace();
+                }
+
+                @Override
+                public void onResponse(Call call, Response response) throws IOException {
+                    if(response.isSuccessful())
+                    {
+                        String res = response.body().string();
+
+                        SeverDetails.this.runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                serverTime.setText(res);
+                            }
+                        });
+                    }
+
+                }
+            });
 
         }
     };
 
 
+    public TextView getServerIP() {
+        return serverIP;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -114,6 +128,12 @@ public class SeverDetails extends AppCompatActivity {
             username.setText(user.getFamilyName() + ", " + user.getGivenName());
         }
 
+        //get developer name
+        Services.getDeveloperName(this);
+
+        //get server public ip
+        Services.getPublicIP(this);
+
 
     }
 
@@ -123,4 +143,6 @@ public class SeverDetails extends AppCompatActivity {
         super.onPause();
         timeHandler.removeCallbacks(timerRunnable);
     }
+
+
 }
