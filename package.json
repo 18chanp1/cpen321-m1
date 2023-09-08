@@ -73,7 +73,7 @@
   },
   "devDependencies": {},
   "scripts": {
-    "start": "node server"
+    "start": "node server/server.js"
   },
   "author": "",
   "license": "ISC"
