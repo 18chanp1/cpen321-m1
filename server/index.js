@@ -7,7 +7,7 @@ app.use(express.json());
 // const uri = "mongodb://localhost:27017";
 // const client = new MongoClient(uri);
 
-let server = app.listen(80 || process.env.PORT, (req, res) =>
+let server = app.listen(80, (req, res) =>
 {
     let host = server.address().address;
     let port = server.address().port;
@@ -17,7 +17,7 @@ let server = app.listen(80 || process.env.PORT, (req, res) =>
 
 app.get("/", (req, res) =>
 {
-    res.send("Hello COMRADE!");
+    res.status(200).send("Hello COMRADE!");
 });
 
 app.get("/server-ip", (req, res) =>
