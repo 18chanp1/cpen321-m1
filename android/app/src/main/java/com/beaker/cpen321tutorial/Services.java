@@ -13,7 +13,40 @@ import okhttp3.Response;
 
 
 public class Services {
-    static final String SERVER_ADDRESS = "http://20.163.101.103";
+    static final String SERVER_ADDRESS = "https://cpen321-m1.azurewebsites.net";
+
+    static public void getTime(SeverDetails context)
+    {
+        OkHttpClient client = new OkHttpClient();
+        String url = SERVER_ADDRESS + "/time";
+
+        Request req = new Request.Builder()
+                .url(url)
+                .build();
+
+        client.newCall(req).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                e.printStackTrace();
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                if(response.isSuccessful())
+                {
+                    String res = response.body().string();
+
+                    context.runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            context.getServerTime().setText(res);
+                        }
+                    });
+                }
+
+            }
+        });
+    }
     static public void getDeveloperName(SeverDetails context)
     {
         OkHttpClient client = new OkHttpClient();

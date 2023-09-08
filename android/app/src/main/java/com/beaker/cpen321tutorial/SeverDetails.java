@@ -25,10 +25,15 @@ import okhttp3.Request;
 import okhttp3.Response;
 
 public class SeverDetails extends AppCompatActivity {
-    private String serveraddr = "http://20.163.101.103";
+    private String serveraddr = "cpen321-m1.azurewebsites.net";
     private TextView serverDetailsTitle;
     private TextView clientIP;
     private TextView serverIP;
+
+    public TextView getServerTime() {
+        return serverTime;
+    }
+
     private TextView serverTime;
     private TextView clientTime;
 
@@ -51,35 +56,8 @@ public class SeverDetails extends AppCompatActivity {
             clientTime.setText(sdf.format(new Date()));
             timeHandler.postDelayed(this, 1000);
 
-            OkHttpClient client = new OkHttpClient();
-            String url = serveraddr + "/time";
+            Services.getTime(SeverDetails.this);
 
-            Request req = new Request.Builder()
-                    .url(url)
-                    .build();
-
-            client.newCall(req).enqueue(new Callback() {
-                @Override
-                public void onFailure(Call call, IOException e) {
-                    e.printStackTrace();
-                }
-
-                @Override
-                public void onResponse(Call call, Response response) throws IOException {
-                    if(response.isSuccessful())
-                    {
-                        String res = response.body().string();
-
-                        SeverDetails.this.runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                serverTime.setText(res);
-                            }
-                        });
-                    }
-
-                }
-            });
 
         }
     };
