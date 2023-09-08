@@ -7,14 +7,13 @@ app.use(express.json());
 // const uri = "mongodb://localhost:27017";
 // const client = new MongoClient(uri);
 
-let server = app.listen(80, (req, res) =>
+let server = app.listen(80 || process.env.PORT, (req, res) =>
 {
     let host = server.address().address;
     let port = server.address().port;
     console.log("Example server running at http://%s:%s", host, port);
 
 })
-
 
 app.get("/", (req, res) =>
 {
