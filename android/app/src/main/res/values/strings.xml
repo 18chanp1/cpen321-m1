@@ -17,4 +17,5 @@
     <string name="dev_name">Developer name:</string>
     <string name="user_name">User name:</string>
     <string name="unavailable">Unavailable</string>
+    <string name="ttt_title">Tic-Tac-Toe</string>
 </resources>
