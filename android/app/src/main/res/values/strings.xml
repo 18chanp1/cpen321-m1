@@ -19,5 +19,5 @@
     <string name="unavailable">Unavailable</string>
     <string name="ttt_title">Tic-Tac-Toe</string>
     <string name="reset">Reset</string>
-    <string name="surprise_cap">Surprising Feature</string>
+    <string name="surprise_cap">Surprise</string>
 </resources>

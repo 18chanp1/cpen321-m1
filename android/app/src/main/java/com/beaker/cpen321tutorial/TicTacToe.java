@@ -38,7 +38,7 @@ public class TicTacToe extends AppCompatActivity {
 
                 for(int i = 0; i < buttonArr.length; i++)
                 {
-                    buttonArr[i].setBackgroundColor(Color.LTGRAY);
+                    buttonArr[i].setImageResource(android.R.color.transparent);
                 }
             }
         });
@@ -57,6 +57,8 @@ public class TicTacToe extends AppCompatActivity {
         buttonArr[7] = findViewById(R.id.tt8);
         buttonArr[8] = findViewById(R.id.tt9);
 
+
+
         for(int i = 0; i < buttonArr.length; i++)
         {
             int finalI = i;
@@ -68,7 +70,7 @@ public class TicTacToe extends AppCompatActivity {
                     else if(game.playerMove(finalI)) // do nothing if invalid box
                     {
                         //update game board for user's move
-                        buttonArr[finalI].setBackgroundColor(Color.BLUE);
+                        buttonArr[finalI].setImageResource(android.R.drawable.ic_delete);
                         Log.d(TAG, "TERMINATION");
                         if(game.terminate() == 1)
                         {
@@ -85,7 +87,8 @@ public class TicTacToe extends AppCompatActivity {
                         }else
                         {
                             int computerMove = game.computerMove();
-                            buttonArr[computerMove].setBackgroundColor(Color.RED);
+                            buttonArr[computerMove].setImageResource(android.R.drawable.ic_notification_overlay);
+                            buttonArr[computerMove].setColorFilter(Color.RED);
                             //update game board for computer's move
                             if(game.terminate() == 2)
                             {
