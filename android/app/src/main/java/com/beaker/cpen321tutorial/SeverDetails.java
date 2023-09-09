@@ -25,7 +25,6 @@ import okhttp3.Request;
 import okhttp3.Response;
 
 public class SeverDetails extends AppCompatActivity {
-    private String serveraddr = "cpen321-m1.azurewebsites.net";
     private TextView serverDetailsTitle;
     private TextView clientIP;
     private TextView serverIP;

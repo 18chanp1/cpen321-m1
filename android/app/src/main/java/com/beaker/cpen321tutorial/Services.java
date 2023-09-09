@@ -13,7 +13,7 @@ import okhttp3.Response;
 
 
 public class Services {
-    static final String SERVER_ADDRESS = "https://cpen321-m1.azurewebsites.net";
+    static final String SERVER_ADDRESS = "https://cpen321-m1-webapp.azurewebsites.net";
 
     static public void getTime(SeverDetails context)
     {
