@@ -7,6 +7,7 @@
     tools:context=".TicTacToe">
 
     <TableLayout
+        android:id="@+id/tableLayout"
         android:layout_width="wrap_content"
         android:layout_height="300dp"
         android:layout_marginTop="64dp"
@@ -19,31 +20,66 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-            <ImageButton
-                android:id="@+id/imageButton2"
-                style="@android:style/Widget.ImageButton"
-                android:layout_width="76dp"
-                android:layout_height="76dp"
-                android:backgroundTint="#FFEB3B"
-                android:src="@android:drawable/btn_star"
-                android:tint="#2196F3"
-                tools:src="@android:drawable/ic_menu_help" />
 
             <ImageButton
-                android:id="@+id/imageButton1"
+                android:id="@+id/tt1"
                 style="@android:style/Widget.ImageButton"
                 android:layout_width="76dp"
                 android:layout_height="76dp"
-                android:backgroundTint="#FFEB3B"
                 android:scaleType="centerInside"
                 app:tint="#2196F3"
                 tools:src="@android:drawable/ic_menu_help" />
 
             <ImageButton
-                android:id="@+id/imageButton3"
+                android:id="@+id/tt2"
+                style="@android:style/Widget.ImageButton"
                 android:layout_width="76dp"
                 android:layout_height="76dp"
-                android:src="@android:drawable/btn_star" />
+                android:scaleType="centerInside"
+                app:tint="#2196F3"
+                tools:src="@android:drawable/ic_menu_help" />
+
+            <ImageButton
+                android:id="@+id/tt3"
+                style="@android:style/Widget.ImageButton"
+                android:layout_width="76dp"
+                android:layout_height="76dp"
+                android:scaleType="centerInside"
+                app:tint="#2196F3"
+                tools:src="@android:drawable/ic_menu_help" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+            <ImageButton
+                android:id="@+id/tt4"
+                style="@android:style/Widget.ImageButton"
+                android:layout_width="76dp"
+                android:layout_height="76dp"
+                android:scaleType="centerInside"
+                app:tint="#2196F3"
+                tools:src="@android:drawable/ic_menu_help" />
+
+            <ImageButton
+                android:id="@+id/tt5"
+                style="@android:style/Widget.ImageButton"
+                android:layout_width="76dp"
+                android:layout_height="76dp"
+                android:scaleType="centerInside"
+                app:tint="#2196F3"
+                tools:src="@android:drawable/ic_menu_help" />
+
+            <ImageButton
+                android:id="@+id/tt6"
+                style="@android:style/Widget.ImageButton"
+                android:layout_width="76dp"
+                android:layout_height="76dp"
+                android:scaleType="centerInside"
+                app:tint="#2196F3"
+                tools:src="@android:drawable/ic_menu_help" />
         </TableRow>
 
         <TableRow
@@ -51,45 +87,31 @@
             android:layout_height="match_parent">
 
             <ImageButton
-                android:id="@+id/imageButton4"
-                android:layout_width="wrap_content"
-                android:layout_height="76dp"
-                android:src="@android:drawable/btn_star" />
-
-            <ImageButton
-                android:id="@+id/imageButton5"
+                android:id="@+id/tt7"
+                style="@android:style/Widget.ImageButton"
                 android:layout_width="76dp"
                 android:layout_height="76dp"
-                android:src="@android:drawable/btn_star" />
+                android:scaleType="centerInside"
+                app:tint="#2196F3"
+                tools:src="@android:drawable/ic_menu_help" />
 
             <ImageButton
-                android:id="@+id/imageButton6"
+                android:id="@+id/tt8"
+                style="@android:style/Widget.ImageButton"
                 android:layout_width="76dp"
                 android:layout_height="76dp"
-                android:src="@android:drawable/btn_star" />
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+                android:scaleType="centerInside"
+                app:tint="#2196F3"
+                tools:src="@android:drawable/ic_menu_help" />
 
             <ImageButton
-                android:id="@+id/imageButton7"
+                android:id="@+id/tt9"
+                style="@android:style/Widget.ImageButton"
                 android:layout_width="76dp"
                 android:layout_height="76dp"
-                android:src="@android:drawable/btn_star" />
-
-            <ImageButton
-                android:id="@+id/imageButton8"
-                android:layout_width="76dp"
-                android:layout_height="76dp"
-                android:src="@android:drawable/btn_star" />
-
-            <ImageButton
-                android:id="@+id/imageButton9"
-                android:layout_width="76dp"
-                android:layout_height="76dp"
-                android:src="@android:drawable/btn_star" />
+                android:scaleType="centerInside"
+                app:tint="#2196F3"
+                tools:src="@android:drawable/ic_menu_help" />
         </TableRow>
 
     </TableLayout>
@@ -99,10 +121,34 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="48dp"
+        android:layout_marginBottom="64dp"
         android:text="@string/ttt_title"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        app:layout_constraintBottom_toTopOf="@+id/tableLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:layout_width="234dp"
+        android:layout_height="219dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tableLayout">
+
+        <TextView
+            android:id="@+id/ttt_res"
+            android:layout_width="match_parent"
+            android:layout_height="163dp"
+            android:textAppearance="@style/TextAppearance.AppCompat.Display2" />
+
+        <Button
+            android:id="@+id/ttt_reset"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/reset" />
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

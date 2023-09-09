@@ -31,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
     private int RC_SIGN_IN  = 1;
     private Button signOutButton;
     private Button phoneDetailsButton;
+    private Button surpriseButton;
     final static String TAG = "MainActivity";
 
 
@@ -93,6 +94,16 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(phoneDetailsIntent);
             }
         });
+
+        surpriseButton = findViewById(R.id.surprise_button);
+        surpriseButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent surpriseIntent = new Intent(MainActivity.this, TicTacToe.class);
+                startActivity(surpriseIntent);
+            }
+        });
+
 
 
     }
