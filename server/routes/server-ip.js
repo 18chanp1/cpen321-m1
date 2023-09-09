@@ -3,7 +3,7 @@ var router = express.Router();
 
 /* GET server ip. */
 router.get('/', function(req, res, next) {
-  res.send("20.40.202.3")
+  res.send("40.112.243.121")
 });
 
 module.exports = router;
