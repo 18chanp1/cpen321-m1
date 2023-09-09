@@ -39,6 +39,7 @@ public class TicTacToe extends AppCompatActivity {
                 for(int i = 0; i < buttonArr.length; i++)
                 {
                     buttonArr[i].setImageResource(android.R.color.transparent);
+                    buttonArr[i].setColorFilter(android.R.color.transparent);
                 }
             }
         });
@@ -71,6 +72,7 @@ public class TicTacToe extends AppCompatActivity {
                     {
                         //update game board for user's move
                         buttonArr[finalI].setImageResource(android.R.drawable.ic_delete);
+                        buttonArr[finalI].setColorFilter(Color.BLUE);
                         Log.d(TAG, "TERMINATION");
                         if(game.terminate() == 1)
                         {
